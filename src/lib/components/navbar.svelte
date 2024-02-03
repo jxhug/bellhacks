@@ -62,22 +62,6 @@
               </Button>
             </Menubar.Item>
         </Menubar.Menu>
-
-        <Menubar.Menu>            <Menubar.Item on:click={() => {
-                console.log("Zoo")
-                goto("/zoo")
-            }}>
-            <!-- Icon here for ""-->
-                <a href="/zoo">
-                <Button variant="ghost">
-                <div class="flex-row flex space-x-2">
-                <PawPrint size={20} />
-                <p> Zoo</p> 
-                <div>
-                </Button>
-                </a>
-            </Menubar.Item> 
-            </Menubar.Menu>
     </div>
 
 <Menubar.Menu>
