@@ -1,0 +1,10 @@
+{
+    "name": "EcoNavigator",
+    "short_name": "EcoNavigator",
+    "theme_color": "#3e21f3",
+    "background_color": "rgba(33,150,243,0)",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/"
+}

@@ -8,7 +8,7 @@
 
 <ModeWatcher />
 
-<div class="container">
+<div class="">
     <Navbar></Navbar>
 
     <slot />
