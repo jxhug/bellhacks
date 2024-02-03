@@ -15,7 +15,13 @@ onMount(() => {
         navigator.geolocation.getCurrentPosition(position => {
             mapComponent.flyTo({center:[position.coords.longitude, position.coords.latitude ]})
 
-            fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${position.coords.longitude},${latitude}.json?limit=2&access_token=pk.eyJ1IjoiY2hpbGRxdWFjayIsImEiOiJjbHM2a2s2dXQwdmVzMmxxaHN0dXEzaGRsIn0.RVy7AMo3FChS0lsSkJcyPg`)
+            fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places-permanent/${position.coords.longitude},${position.coords.latitude}.json?limit=2&access_token=pk.eyJ1IjoiY2hpbGRxdWFjayIsImEiOiJjbHM2a2s2dXQwdmVzMmxxaHN0dXEzaGRsIn0.RVy7AMo3FChS0lsSkJcyPg`).then(response => response.json()).then(data => {
+                console.log(data)
+
+                //ZAdwd454Wg4Hd3rBJVaKfB5N5OEP4Fh7
+
+                //https://transit.land/api/v2/rest/stops?lon=-121.89496&lat=37.33939&&radius=1000&api_key=ZAdwd454Wg4Hd3rBJVaKfB5N5OEP4Fh7
+            })
 
         })
     }

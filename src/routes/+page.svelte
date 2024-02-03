@@ -51,7 +51,7 @@
             <div class="absolute inset-0 h-1/2"></div>
             <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-4xl mx-auto">
-                    <dl class="rounded-lg bg-white dark:bg-gray-800 bg-opacity-25 shadow-lg sm:grid sm:grid-cols-3">
+                    <dl class="rounded-lg bg-white dark:bg-gray-800 bg-opacity-25 shadow-lg dark:shadow-xl sm:grid sm:grid-cols-3">
                         <div class="flex flex-col border-b border-gray-100 dark:border-gray-700 p-6 text-center sm:border-0 sm:border-r">
                             <dt class="order-2 mt-2 text-lg leading-6 font-light text-gray-500 dark:text-gray-400">
                                 metric tonnes of CO₂ produced each year by transport
@@ -61,15 +61,15 @@
                         <div
                             class="flex flex-col border-t border-b border-gray-100 dark:border-gray-700 p-6 text-center sm:border-0 sm:border-l sm:border-r">
                             <dt class="order-2 mt-2 text-lg leading-6 font-light text-gray-500 dark:text-gray-400">
-                                of worldwide CO₂ emissions attributed to motor vehicles
+                                of transport CO₂ emissions attributed to motor vehicles
                             </dt>
                             <dd class="order-1 text-5xl font-extrabold text-gray-700 dark:text-white">83%</dd>
                         </div>
                         <div class="flex flex-col border-t border-gray-100 dark:border-gray-700 p-6 text-center sm:border-0 sm:border-l">
                             <dt class="order-2 mt-2 text-lg leading-6 font-lights text-gray-500 dark:text-gray-400">
-                                tonnes of CO₂ emissions reduced annually per individual by taking public transit
+                                of CO₂ emissions reduced by taking public transit
                             </dt>
-                            <dd class="order-1 text-5xl font-extrabold text-gray-700 dark:text-white">2.2</dd>
+                            <dd class="order-1 text-5xl font-extrabold text-gray-700 dark:text-white">45%</dd>
                         </div>
                     </dl>
                 </div>
@@ -77,3 +77,22 @@
         </div>
     </div>
 </div>
+
+<footer class="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
+    <div class="mx-auto max-w-screen-xl text-center">
+        <div class="flex flex-row gap-x-2 justify-center items-center text-2xl font-semibold text-gray-900 dark:text-white">
+            <img src="https://imagedelivery.net/jdWMhVH-CbfKe5Pbmw-19Q/95b40fa8-16e5-4edf-c117-210140458600/public" class="w-9 h-9" alt="">
+            EcoNavigator    
+        </div>
+        <p class="my-6 text-gray-500 dark:text-gray-400">The easiest way to reduce carbon emissions through eco-friendly transit.</p>
+        <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
+            <li>
+                <a href="#" class="mr-4 hover:underline md:mr-6 ">Home</a>
+            </li>
+            <li>
+                <a href="#" class="mr-4 hover:underline md:mr-6">Routes</a>
+            </li>
+        </ul>
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 EcoNavigator. All Rights Reserved.</span>
+    </div>
+  </footer>
