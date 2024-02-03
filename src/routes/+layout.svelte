@@ -1,5 +1,12 @@
 <script>
-    import "../app.css";
+    import "../app.pcss";
+  import { ModeWatcher } from "mode-watcher";
+
 </script>
 
-<slot />
+
+<ModeWatcher />
+
+<div class="container">
+    <slot />
+</div>
