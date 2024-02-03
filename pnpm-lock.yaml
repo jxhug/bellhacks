@@ -32,6 +32,9 @@ dependencies:
   radix-icons-svelte:
     specifier: ^1.2.1
     version: 1.2.1
+  svelte-scrollto:
+    specifier: ^0.2.0
+    version: 0.2.0
   svelte-sonner:
     specifier: ^0.3.11
     version: 0.3.11(svelte@4.2.9)
@@ -1657,12 +1660,23 @@ packages:
       typescript: 5.3.3
     dev: true
 
+  /svelte-scrollto@0.2.0:
+    resolution: {integrity: sha512-l4K2E4jr6dXCODtZDCkpp/TzknVVoq8gecHM0UOOmihvLosczdyLuyDUhZ+U2HkhLWi7nnimuOstZSFKtXSpmA==}
+    dependencies:
+      svelte: 3.59.2
+    dev: false
+
   /svelte-sonner@0.3.11(svelte@4.2.9):
     resolution: {integrity: sha512-TkjgDC7zr0waky81Z9CShXMD+4NQ7UASuRx0BhgQo8ZTDQQYk8X8MzJa3zVtZVa6RYJEiahHBXx8Zt/Ie9G5hg==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:
       svelte: 4.2.9
+    dev: false
+
+  /svelte@3.59.2:
+    resolution: {integrity: sha512-vzSyuGr3eEoAtT/A6bmajosJZIUWySzY2CzB3w2pgPvnkUjGqlDnsNnA0PMO+mMAhuyMul6C2uuZzY6ELSkzyA==}
+    engines: {node: '>= 8'}
     dev: false
 
   /svelte@4.2.9:
