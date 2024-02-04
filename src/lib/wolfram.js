@@ -1,6 +1,6 @@
 // @ts-ignore
 export function fetchDist(point1Lat, point1Lon, point2Lat, point2Lon) {
-    fetch(`https://api.wolframalpha.com/v2/query?input=distancebetween(${point1Lat},${point1Lon})and(${point2Lat},${point2Lon})&format=plaintext&output=JSON&appid=QKRURU-KQW98X783E`)
+    fetch(`/wolfram/v2/query?input=distancebetween(${point1Lat},${point1Lon})and(${point2Lat},${point2Lon})&format=plaintext&output=JSON&appid=QKRURU-KQW98X783E`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);

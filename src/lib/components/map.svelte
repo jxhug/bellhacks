@@ -93,6 +93,11 @@ onMount(() => {
             => toast()
 
         */
+
+        fetchDist(latitude, longitude, userLatitude, userLongitude)
+
+
+
         //fetch the carbon interface api using the wolfram alpha distance api to get coord dist
         // Function to calculate distance using Haversine formula
         function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
