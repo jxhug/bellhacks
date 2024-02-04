@@ -3,29 +3,102 @@
     import { mode } from "mode-watcher";
     import { controls } from '@beyonk/svelte-mapbox'
     import { onMount } from 'svelte'
+    import { toast } from 'svelte-sonner';
+    import * as Drawer from "$lib/components/ui/drawer";
+	import { Button } from './ui/button';
+
+    import { fetchDist } from '$lib/wolfram.js'
+    import { getCarbonOffset } from '$lib/carbon.js'
 
     const { GeolocateControl, NavigationControl, ScaleControl } = controls
-
 
     let darkMode = false
     let mapComponent: Map
 
+    let marker = null
+    let latitude = 0;
+    let longitude = 0;
+
+    let userLongitude = 0;
+    let userLatitude = 0;
+
+    let isOpen = false;
+
+
+    
+
 onMount(() => {
+    
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
             mapComponent.flyTo({center:[position.coords.longitude, position.coords.latitude ]})
 
-            fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places-permanent/${position.coords.longitude},${position.coords.latitude}.json?limit=2&access_token=pk.eyJ1IjoiY2hpbGRxdWFjayIsImEiOiJjbHM2a2s2dXQwdmVzMmxxaHN0dXEzaGRsIn0.RVy7AMo3FChS0lsSkJcyPg`).then(response => response.json()).then(data => {
-                console.log(data)
+            userLongitude = position.coords.longitude
+            userLatitude = position.coords.latitude
 
-                //ZAdwd454Wg4Hd3rBJVaKfB5N5OEP4Fh7
+            //https://transit.land/api/v2/rest/agencies?lon=-121.89496&lat=37.33939&&radius=1000&api_key=ZAdwd454Wg4Hd3rBJVaKfB5N5OEP4Fh7
+            
+        })}
 
-                //https://transit.land/api/v2/rest/stops?lon=-121.89496&lat=37.33939&&radius=1000&api_key=ZAdwd454Wg4Hd3rBJVaKfB5N5OEP4Fh7
-            })
+    mapComponent.$on('click', (e) => {
+        // check that the event.detail is {} and not a number
+        if (typeof e.detail === 'number') return
 
-        })
+        console.log(e.detail)
+        longitude = e.detail.lng
+        latitude = e.detail.lat
+
+        calculateResults()
+    })
+
+    mapComponent.$on('touch', (e) => {
+        // check that the event.detail is {} and not a number
+        if (typeof e.detail === 'number') return
+
+        console.log(e.detail)
+        longitude = e.detail.lng
+        latitude = e.detail.lat
+
+        calculateResults()
+    })
+
+    mapComponent.$on('tap', (e) => {
+        // check that the event.detail is {} and not a number
+        if (typeof e.detail === 'number') return
+
+        console.log(e.detail)
+        longitude = e.detail.lng
+        latitude = e.detail.lat
+
+        calculateResults()
+    })
+
+
+
+
+    const calculateResults = async () => {
+        toast(`CO₂ saved emmisions is ${Math.floor(Math.random() * 100)} g`)
+        /**
+            let latitude = 0;
+            let longitude = 0;
+
+            let userLongitude = 0;
+            let userLatitude = 0;
+
+            => toast()
+
+        */
+
+        let dist = fetch("https://worker-broken-paper-9d72.quacksire.workers.dev/getDist?point1Lat=" + latitude + "&point1Lat=" + longitude + "&point1Lon=" + userLatitude + "&point2Lat2=" + userLongitude)
+        let dist = await fetchDist(latitude, longitude, userLatitude, userLongitude)
+        let carbon = await getCarbonOffset(dist)
+        console.log(carbon)
     }
 })
+
+
+
 
 //
 
@@ -44,17 +117,21 @@ mapbox://styles/mapbox/navigation-night-v1
 </script>
 
 <div class="h-screen w-full">
+
 <Map accessToken="pk.eyJ1IjoiY2hpbGRxdWFjayIsImEiOiJjbHM2a2s2dXQwdmVzMmxxaHN0dXEzaGRsIn0.RVy7AMo3FChS0lsSkJcyPg"
-  style="mapbox://styles/mapbox/navigation-night-v1"
+  style="mapbox://styles/mapbox/dark-v10"
   bind:this={mapComponent} 
 center={[-121.89496, 37.33939]} zoom={12}
 
 >
-   <Marker lat=-74.0060152 lng=40.7127281 label="NYC" />
-  <GeolocateControl position="bottom-right" trackUserLocation={true} />
 <NavigationControl />
-<ScaleControl />
-x
+<Marker lat={latitude} lng={longitude}  />
+
+<Marker lat={userLatitude} lng={userLongitude} color="rgb(0,0,255)" label="You" popup={false} />
+
+
+<Marker lat={latitude} lng={longitude} />
+
 </Map>
 </div>
 

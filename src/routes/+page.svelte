@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button";
-    import { onMount } from "svelte";
-    
-    let about: HTMLElement;
 
+    let about: HTMLElement;
 </script>
+
 
 <div class="flex h-screen w-screen">
     <section class="bg-center bg-hero-image bg-no-repeat bg-cover bg-blend-overlay bg-slate-200 dark:bg-[#171a17] w-screen">
@@ -56,7 +55,7 @@
                             <dt class="order-2 mt-2 text-lg leading-6 font-light text-gray-500 dark:text-gray-400">
                                 metric tonnes of CO₂ produced each year by transport
                             </dt>
-                            <dd class="order-1 text-5xl font-extrabold text-gray-700 dark:text-white">7B+</dd>
+                            <dd class="order-1 text-5xl font-extrabold text-gray-700 dark:text-white number-animation">7B+</dd>
                         </div>
                         <div
                             class="flex flex-col border-t border-b border-gray-100 dark:border-gray-700 p-6 text-center sm:border-0 sm:border-l sm:border-r">
@@ -77,6 +76,7 @@
         </div>
     </div>
 </div>
+
 
 <footer class="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
     <div class="mx-auto max-w-screen-xl text-center">
