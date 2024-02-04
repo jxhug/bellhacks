@@ -79,7 +79,10 @@ onMount(() => {
 
 
     const calculateResults = async () => {
-        toast.loading('Calculating CO₂ saved emmisions')
+        toast.loading('Calculating CO₂ saved emmisions', {duration: 2000})
+
+        
+
         /**
             let latitude = 0;
             let longitude = 0;
@@ -94,7 +97,10 @@ onMount(() => {
         let dist = await fetch("https://worker-broken-paper-9d72.quacksire.workers.dev/calculateAndBypassCORSs?point1Lat=" + latitude + "&point1Lon=" + longitude + "&point2Lat=" + userLatitude + "&point2Lon=" + userLongitude)
         console.log(dist)        
 
-        toast(`CO₂ saved emissions is ${dist} g`)
+
+        setTimeout(() => {
+            toast(`CO₂ saved emissions is ${dist} g`)
+        }, 2000 + Math.floor(Math.random() * 1000))
     }
 })
 
