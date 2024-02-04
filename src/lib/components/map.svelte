@@ -94,12 +94,57 @@ onMount(() => {
 
         */
         //fetch the carbon interface api using the wolfram alpha distance api to get coord dist
-        let dist = await fetch("https://worker-broken-paper-9d72.quacksire.workers.dev/calculateAndBypassCORSs?point1Lat=" + latitude + "&point1Lon=" + longitude + "&point2Lat=" + userLatitude + "&point2Lon=" + userLongitude)
-        console.log(dist)        
+        // Function to calculate distance using Haversine formula
+        function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
+            const R = 6371; // Radius of Earth in kilometers
+
+            // Convert latitude and longitude from degrees to radians
+            const dLat = (lat2 - lat1) * (Math.PI / 180);
+            const dLon = (lon2 - lon1) * (Math.PI / 180);
+
+            // Haversine formula
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const distance = R * c;
+
+            return distance;
+        }
+
+
+        let dist = calculateDistance(latitude, longitude, userLatitude, userLongitude)
+
+
+        // Function to calculate emissions in grams
+        function calculateEmissionsInGrams(distance: number, mileage: number) {
+            const emissionFactorPounds = 22.4; // Emission factor for diesel vehicles in pounds of CO2 per gallon
+            const poundsToGramsConversion = 453.592; // Conversion factor from pounds to grams
+
+            // Convert emission factor to grams
+            const emissionFactorGrams = emissionFactorPounds * poundsToGramsConversion;
+
+            // Calculate emissions in grams
+            const emissionsGrams = (distance / mileage) * emissionFactorGrams;
+
+            return emissionsGrams;
+        }
+
+        // Example values
+        const distanceTraveled = dist; // Use the distance calculated previously
+        const fuelEfficiency = 20; // Assume average fuel efficiency of 20 miles per gallon
+
+        // Calculate emissions in grams
+        const emissionsGrams = calculateEmissionsInGrams(distanceTraveled, fuelEfficiency);
+
+        const calculation = Math.floor(parseFloat(emissionsGrams.toFixed(3)) / 10)
+
+        console.log(`Estimated emissions: ${Math.floor(parseFloat(emissionsGrams.toFixed(3)))} grams of CO2`);
 
 
         setTimeout(() => {
-            toast(`CO₂ saved emissions is ${dist} g`)
+            toast(`Saved ${calculation}g in CO₂ emissions.`, {duration: 2000})
         }, 2000 + Math.floor(Math.random() * 1000))
     }
 })
