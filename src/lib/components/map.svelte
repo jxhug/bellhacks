@@ -78,7 +78,6 @@ onMount(() => {
 
 
     const calculateResults = async () => {
-        toast(`CO₂ saved emmisions is ${Math.floor(Math.random() * 100)} g`)
         /**
             let latitude = 0;
             let longitude = 0;
@@ -89,11 +88,9 @@ onMount(() => {
             => toast()
 
         */
-
-        let dist = fetch("https://worker-broken-paper-9d72.quacksire.workers.dev/getDist?point1Lat=" + latitude + "&point1Lat=" + longitude + "&point1Lon=" + userLatitude + "&point2Lat2=" + userLongitude)
-        let dist = await fetchDist(latitude, longitude, userLatitude, userLongitude)
-        let carbon = await getCarbonOffset(dist)
-        console.log(carbon)
+        //fetch the carbon interface api using the wolfram alpha distance api to get coord dist
+        let dist = await fetch("https://worker-broken-paper-9d72.quacksire.workers.dev/getDist?point1Lat=" + latitude + "&point1Lon=" + longitude + "&point2Lat=" + userLatitude + "&point2Lon=" + userLongitude)
+        toast(`CO₂ saved emmisions is ${dist} g`)
     }
 })
 
