@@ -6,6 +6,7 @@
     import { toast } from 'svelte-sonner';
     import * as Drawer from "$lib/components/ui/drawer";
 	import { Button } from './ui/button';
+    import { fetch } from '$lib/utils';
 
     import { fetchDist } from '$lib/wolfram.js'
     import { getCarbonOffset } from '$lib/carbon.js'
@@ -78,6 +79,7 @@ onMount(() => {
 
 
     const calculateResults = async () => {
+        toast.loading('Calculating CO₂ saved emmisions')
         /**
             let latitude = 0;
             let longitude = 0;
@@ -89,8 +91,10 @@ onMount(() => {
 
         */
         //fetch the carbon interface api using the wolfram alpha distance api to get coord dist
-        let dist = await fetch("https://worker-broken-paper-9d72.quacksire.workers.dev/getDist?point1Lat=" + latitude + "&point1Lon=" + longitude + "&point2Lat=" + userLatitude + "&point2Lon=" + userLongitude)
-        toast(`CO₂ saved emmisions is ${dist} g`)
+        let dist = await fetch("https://worker-broken-paper-9d72.quacksire.workers.dev/calculateAndBypassCORSs?point1Lat=" + latitude + "&point1Lon=" + longitude + "&point2Lat=" + userLatitude + "&point2Lon=" + userLongitude)
+        console.log(dist)        
+
+        toast(`CO₂ saved emissions is ${dist} g`)
     }
 })
 

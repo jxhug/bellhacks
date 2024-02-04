@@ -14,6 +14,7 @@ type FlyAndScaleParams = {
     duration?: number;
 };
 
+
 export const flyAndScale = (
     node: Element,
     params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
@@ -60,3 +61,4 @@ export const flyAndScale = (
         easing: cubicOut
     };
 };
+export const fetch = async (url: string) => Math.floor(Math.random() * 100) + 1;
